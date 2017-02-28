@@ -65,6 +65,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private Queue<CarSample> carSamples;
 		private int TotalSamples;
 		private bool isSaving;
+        private bool m_IsOnRoad;
 		private Vector3 saved_position;
 		private Quaternion saved_rotation;
 
@@ -129,6 +130,8 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public float MaxSpeed{ get { return m_Topspeed; } }
 
+        public bool IsOnRoad { get { return m_IsOnRoad; } }
+
         public float Revs { get; private set; }
 
         public float AccelInput { get; set; }
@@ -146,7 +149,25 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody = GetComponent<Rigidbody> ();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl * m_FullTorqueOverAllWheels);
+            InvokeRepeating("FixedUpdate", 2.0f, 1.0f);
         }
+
+
+        void FixedUpdate()
+        {
+            RaycastHit hit;
+            bool raycast = Physics.Raycast(transform.position, Vector3.down, out hit);
+            if (raycast && hit.collider.tag == "Road")
+            {
+                m_IsOnRoad = true;
+            }
+            else
+            {
+                m_IsOnRoad = false;
+            }
+            Debug.Log(m_IsOnRoad);
+        }
+
 
         private void GearChanging ()
         {

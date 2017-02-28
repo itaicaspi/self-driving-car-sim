@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 192738148}
   m_Layer: 0
   m_Name: light_ambient_blue
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4425,7 +4425,7 @@ GameObject:
   - component: {fileID: 713276126}
   m_Layer: 0
   m_Name: road_signs
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4553,7 +4553,7 @@ GameObject:
   - component: {fileID: 723220265}
   m_Layer: 0
   m_Name: Tires
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5677,6 +5677,10 @@ Prefab:
     - target: {fileID: 2300000, guid: 9485b0c79d11e2e4d0007da98d76c639, type: 2}
       propertyPath: m_ReflectionProbeUsage
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9485b0c79d11e2e4d0007da98d76c639, type: 2}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9485b0c79d11e2e4d0007da98d76c639, type: 2}
@@ -7502,6 +7506,10 @@ Prefab:
       propertyPath: m_Name
       value: electrical-towers (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 28076010641c5a64594a63a738cfef62, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28076010641c5a64594a63a738cfef62, type: 3}
   m_IsPrefabParent: 0
@@ -7732,7 +7740,7 @@ GameObject:
   - component: {fileID: 1379882160}
   m_Layer: 0
   m_Name: race-track
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8395,7 +8403,7 @@ GameObject:
   - component: {fileID: 1478365724}
   m_Layer: 0
   m_Name: LakeTerrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -9687,7 +9695,7 @@ GameObject:
   - component: {fileID: 1729786146}
   m_Layer: 0
   m_Name: rocks
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
