@@ -5,6 +5,7 @@ using SocketIO;
 using UnityStandardAssets.Vehicles.Car;
 using System;
 using System.Security.AccessControl;
+using UnityEngine.SceneManagement;
 
 public class CommandServer : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class CommandServer : MonoBehaviour
 		_socket.On("open", OnOpen);
 		_socket.On("steer", OnSteer);
 		_socket.On("manual", onManual);
-		_carController = CarRemoteControl.GetComponent<CarController>();
+        _socket.On("reset", OnReset);
+        _carController = CarRemoteControl.GetComponent<CarController>();
 	}
 
 	// Update is called once per frame
@@ -28,7 +30,14 @@ public class CommandServer : MonoBehaviour
 	{
 	}
 
-	void OnOpen(SocketIOEvent obj)
+    void OnReset(SocketIOEvent obj)
+    {
+        Debug.Log("Reset environment");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        EmitTelemetry(obj);
+    }
+
+    void OnOpen(SocketIOEvent obj)
 	{
 		Debug.Log("Connection Open");
 		EmitTelemetry(obj);
@@ -66,9 +75,9 @@ public class CommandServer : MonoBehaviour
 				data["speed"] = _carController.CurrentSpeed.ToString("N4");
                 data["is_on_road"] = _carController.IsOnRoad.ToString();
                 data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
-                FrontFacingCamera.depthTextureMode = DepthTextureMode.Depth;
-                data["depth_image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
-                FrontFacingCamera.depthTextureMode = DepthTextureMode.None;
+                //FrontFacingCamera.depthTextureMode = DepthTextureMode.Depth;
+                //data["depth_image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
+                //FrontFacingCamera.depthTextureMode = DepthTextureMode.None;
                 _socket.Emit("telemetry", new JSONObject(data));
 			}
 		});

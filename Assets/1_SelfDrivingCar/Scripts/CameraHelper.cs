@@ -2,9 +2,13 @@ using UnityEngine;
 
 public static class CameraHelper
 {
-  public static byte[] CaptureFrame(Camera camera)
+  public static byte[] CaptureFrame(Camera camera, bool depth = false)
   {
     RenderTexture targetTexture = camera.targetTexture;
+    if (depth)
+    {
+        
+    }
     RenderTexture.active = targetTexture;
 	Texture2D texture2D = new Texture2D(targetTexture.width, targetTexture.height, TextureFormat.RGB24, false);
 	texture2D.ReadPixels(new Rect(0, 0, targetTexture.width, targetTexture.height), 0, 0);
